@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<script src="main.js"></script>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Explore the fluid boundaries of digital persona with Faceswap. Experience seamless transformations and real-time editing of your virtual expression." name="description"/>
+<meta content="digital identity, AI face swap, seamless transformation, real-time editing, virtual expression, wefaceswap, face swap" name="keywords"/>
+<title>Faceswap - Identity Liquified: Navigating the Fluid Boundaries of Digital Persona</title>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&amp;family=Cormorant+Garamond:wght@300;400&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+        --primary-blue: #B0E0E6;
+        --primary-purple: #E6E6FA;
+        --primary-green: #98FB98;
+        --secondary-white: #FFFFFF;
+        --secondary-gray: #E0E0E0;
+    }
+    
+    body {
+        font-family: 'Quicksand', sans-serif;
+        background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple), var(--primary-green));
+        color: #333;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Cormorant Garamond', serif;
+    }
+    
+    .btn {
+        border-radius: 50px;
+        transition: all 0.3s ease;
+    }
+    
+    .btn:hover {
+        transform: scale(1.05);
+    }
+    
+    input, textarea {
+        border: none;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        background: rgba(255,255,255,0.7);
+    }
+    
+    .custom-cursor {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const cursor = document.createElement('div');
+        cursor.classList.add('custom-cursor');
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('click', (e) => {
+            cursor.style.transform = 'scale(1.5)';
+            setTimeout(() => {
+                cursor.style.transform = 'scale(1)';
+            }, 200);
+        });
+
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(button => {
+            button.addEventListener('mouseover', () => {
+                cursor.style.transform = 'scale(1.5)';
+            });
+            button.addEventListener('mouseout', () => {
+                cursor.style.transform = 'scale(1)';
+            });
+        });
+    });
+</script>
+<div class="position-fixed bottom-0 start-50 translate-middle-x p-3 bg-white bg-opacity-75 rounded-top shadow" id="cookie-consent" style="z-index: 1050; display: none;">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-md-8">
+<p class="mb-0 text-muted">We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
+</div>
+<div class="col-md-4 text-end">
+<button class="btn btn-sm btn-primary me-2" id="accept-cookies">Accept</button>
+<button class="btn btn-sm btn-outline-secondary" id="decline-cookies">Decline</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const cookieConsent = document.getElementById('cookie-consent');
+    const acceptBtn = document.getElementById('accept-cookies');
+    const declineBtn = document.getElementById('decline-cookies');
+
+    function setCookieConsent(value) {
+        localStorage.setItem('cookieConsent', value);
+        cookieConsent.style.display = 'none';
+        cookieConsent.remove(); // Completely remove the element from the DOM
+    }
+
+    if (!localStorage.getItem('cookieConsent')) {
+        cookieConsent.style.display = 'block';
+    }
+
+    acceptBtn.addEventListener('click', function() {
+        setCookieConsent('accepted');
+    });
+
+    declineBtn.addEventListener('click', function() {
+        setCookieConsent('declined');
+    });
+});
+</script>
+<style>
+#cookie-consent {
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease-in-out;
+}
+
+#cookie-consent button {
+    transition: all 0.3s ease-in-out;
+}
+
+#cookie-consent button:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    #cookie-consent .col-md-4 {
+        text-align: left !important;
+        margin-top: 10px;
+    }
+}
+</style>
+</head>
+<body hidden style="display: flex; flex-direction: column; min-height: 100vh;">
+<div style="flex: 1;">
+<header>
+<header class="navbar navbar-expand-lg navbar-light bg-transparent py-3">
+<div class="container">
+<a class="navbar-brand" href="/" style="font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1.8rem; color: #6a8caf; text-shadow: 1px 1px 2px rgba(106, 140, 175, 0.3);">
+      Faceswap
+    </a>
+<button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="posts.html" style="font-family: 'Roboto', sans-serif; font-weight: 300; color: #8a9db0; transition: all 0.3s ease;">Posts</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="about.html" style="font-family: 'Roboto', sans-serif; font-weight: 300; color: #8a9db0; transition: all 0.3s ease;">About</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="contacts.html" style="font-family: 'Roboto', sans-serif; font-weight: 300; color: #8a9db0; transition: all 0.3s ease;">Contacts</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="privacy_policy.html" style="font-family: 'Roboto', sans-serif; font-weight: 300; color: #8a9db0; transition: all 0.3s ease;">Privacy Policy</a>
+</li>
+</ul>
+</div>
+</div>
+</header>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Roboto:wght@300;400&display=swap');
+
+  .navbar {
+    background: linear-gradient(135deg, rgba(106, 140, 175, 0.1), rgba(138, 157, 176, 0.1));
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-link {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #6a8caf, #8a9db0);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .nav-link:hover {
+    color: #6a8caf !important;
+  }
+
+  @media (max-width: 991px) {
+    .navbar-collapse {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(5px);
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 10px;
+    }
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    
+    navLinks.forEach(link => {
+      link.addEventListener('mouseover', function(e) {
+        createRipple(e, this);
+      });
+    });
+
+    navbarToggler.addEventListener('click', function() {
+      navbarCollapse.classList.toggle('show');
+    });
+
+    function createRipple(e, element) {
+      const ripple = document.createElement('div');
+      ripple.classList.add('ripple');
+      element.appendChild(ripple);
+
+      const rect = element.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+
+      ripple.style.width = ripple.style.height = `${size}px`;
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+
+      setTimeout(() => ripple.remove(), 600);
+    }
+  });
+</script>
+<style>
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(106, 140, 175, 0.3);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+  }
+
+  @keyframes ripple-animation {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+</style>
+</header>
+<div class="container-fluid py-5" style="background: linear-gradient(135deg, rgba(176, 196, 222, 0.7), rgba(230, 230, 250, 0.7), rgba(143, 188, 143, 0.7));">
+<div class="row justify-content-center">
+<div class="col-lg-8 text-center">
+<h1 class="display-4 mb-4" style="font-weight: 300; color: #4A4A4A; text-shadow: 1px 1px 2px rgba(255,255,255,0.5);">
+                Welcome to the Fluid Realm of Digital Identity
+            </h1>
+<p class="lead mb-5" style="font-weight: 300; color: #5A5A5A; line-height: 1.8;">
+                Dive into the mesmerizing world of Faceswap, where the boundaries between reality and digital persona blur into a seamless tapestry of endless possibilities.
+            </p>
+</div>
+</div>
+<div class="row justify-content-center">
+<div class="col-lg-10">
+<div class="card border-0 shadow-sm" style="background-color: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px);">
+<div class="card-body p-5">
+<h2 class="h3 mb-4" style="font-weight: 400; color: #3A3A3A;">Explore the Essence of Digital Transformation</h2>
+<p style="color: #4A4A4A; line-height: 1.7;">
+                        In the ever-evolving landscape of digital expression, Faceswap stands as a beacon of innovation. Our cutting-edge AI face swap technology doesn't just change faces – it opens doors to new dimensions of identity exploration.
+                    </p>
+<p style="color: #4A4A4A; line-height: 1.7;">
+                        Whether you're an artist seeking to push the boundaries of visual storytelling, a content creator looking to add a touch of magic to your work, or simply curious about the potential of digital persona manipulation, Faceswap offers a seamless, intuitive platform for real-time editing and virtual expression.
+                    </p>
+<div class="mt-5">
+<h3 class="h4 mb-3" style="font-weight: 400; color: #3A3A3A;">Why Choose Faceswap?</h3>
+<ul class="list-unstyled">
+<li class="mb-2"><i class="fas fa-water mr-2" style="color: #6A5ACD;"></i> Fluid and intuitive interface</li>
+<li class="mb-2"><i class="fas fa-magic mr-2" style="color: #6A5ACD;"></i> State-of-the-art AI algorithms</li>
+<li class="mb-2"><i class="fas fa-bolt mr-2" style="color: #6A5ACD;"></i> Lightning-fast advancedcessing</li>
+<li class="mb-2"><i class="fas fa-shield-alt mr-2" style="color: #6A5ACD;"></i> Privacy-focused apadvancedach</li>
+<li><i class="fas fa-palette mr-2" style="color: #6A5ACD;"></i> Endless creative possibilities</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const headingElement = document.querySelector('.display-4');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    });
+
+    observer.observe(headingElement);
+
+    headingElement.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+    headingElement.style.opacity = 0;
+    headingElement.style.transform = 'translateY(20px)';
+});
+</script>
+<div class="container mt-5">
+<h2 class="mb-4 text-center" style="font-weight: 300; color: #6a5acd; text-shadow: 1px 1px 2px rgba(106, 90, 205, 0.3);">Latest Posts</h2>
+<div class="row g-4">
+<div class="col-md-4">
+<div class="card h-100 border-0 shadow-sm" style="background: linear-gradient(135deg, rgba(230, 230, 250, 0.7), rgba(176, 224, 230, 0.7)); backdrop-filter: blur(10px);">
+<img alt="A surreal image depicting two faces merging, symbolizing the ethical dilemma of digital face swapping. The image has a dreamy quality with soft focus and overlapping translucent layers." class="card-img-top" src="images/image_0_index.png" style="opacity: 0.8;"/>
+<div class="card-body">
+<h5 class="card-title" style="font-weight: 300; color: #4b0082;">The Ethics of Digital Face Swapping</h5>
+<p class="card-text" style="font-weight: 300; color: #483d8b;">Exploring the moral implications and potential consequences of face swapping technology in the digital age.</p>
+<a class="btn btn-outline-primary mt-2" href="posts_1.html" style="border-radius: 50px; transition: all 0.3s ease;">Read More</a>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="card h-100 border-0 shadow-sm" style="background: linear-gradient(135deg, rgba(230, 230, 250, 0.7), rgba(176, 224, 230, 0.7)); backdrop-filter: blur(10px);">
+<img alt="A collage of smartphone screens showing various face swap app interfaces, with ethereal, translucent effects connecting the screens." class="card-img-top" src="images/image_1_index.png" style="opacity: 0.8;"/>
+<div class="card-body">
+<h5 class="card-title" style="font-weight: 300; color: #4b0082;">Face Swap Apps: A Comprehensive Review</h5>
+<p class="card-text" style="font-weight: 300; color: #483d8b;">An in-depth analysis of popular face swapping applications, their features, and user experiences.</p>
+<a class="btn btn-outline-primary mt-2" href="posts_2.html" style="border-radius: 50px; transition: all 0.3s ease;">Read More</a>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="card h-100 border-0 shadow-sm" style="background: linear-gradient(135deg, rgba(230, 230, 250, 0.7), rgba(176, 224, 230, 0.7)); backdrop-filter: blur(10px);">
+<img alt="A dreamlike montage of famous movie scenes and internet memes, all featuring subtly face-swapped characters with a surreal, flowing aesthetic." class="card-img-top" src="images/image_2_index.png" style="opacity: 0.8;"/>
+<div class="card-body">
+<h5 class="card-title" style="font-weight: 300; color: #4b0082;">The Art of Face Swapping: From Memes to Movies</h5>
+<p class="card-text" style="font-weight: 300; color: #483d8b;">Examining the creative applications of face swapping in various media forms and its impact on popular culture.</p>
+<a class="btn btn-outline-primary mt-2" href="posts_3.html" style="border-radius: 50px; transition: all 0.3s ease;">Read More</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Add hover effects to cards
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', (e) => {
+            card.style.transform = 'translateY(-5px)';
+            card.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+            card.style.transition = 'all 0.3s ease';
+        });
+        card.addEventListener('mouseleave', (e) => {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = '0 5px 10px rgba(0,0,0,0.05)';
+        });
+    });
+
+    // Add ripple effect to buttons
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            let x = e.clientX - e.target.offsetLeft;
+            let y = e.clientY - e.target.offsetTop;
+            
+            let ripples = document.createElement('span');
+            ripples.style.left = x + 'px';
+            ripples.style.top = y + 'px';
+            this.appendChild(ripples);
+
+            setTimeout(() => {
+                ripples.remove()
+            },1000);
+        });
+    });
+});
+</script>
+<style>
+.btn-outline-primary {
+    color: #6a5acd;
+    border-color: #6a5acd;
+}
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #6a5acd;
+    border-color: #6a5acd;
+}
+.card {
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.card:hover img {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+.btn span {
+    position: absolute;
+    background: #fff;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    border-radius: 50%;
+    animation: animate 1s linear infinite;
+}
+@keyframes animate {
+    0% {
+        width: 0px;
+        height: 0px;
+        opacity: 0.5;
+    }
+    100% {
+        width: 500px;
+        height: 500px;
+        opacity: 0;
+    }
+}
+</style>
+</div>
+<footer style="width: 100%; z-index: 1000;">
+<footer class="bg-light py-4">
+<div class="container">
+<div class="row">
+<div class="col-md-4 mb-3 mb-md-0">
+<h5 class="text-muted mb-3">Faceswap</h5>
+<p class="text-muted small">Identity Liquified: Navigating the Fluid Boundaries of Digital Persona</p>
+</div>
+<div class="col-md-4 mb-3 mb-md-0">
+<h5 class="text-muted mb-3">Navigation</h5>
+<ul class="list-unstyled">
+<li><a class="text-muted text-decoration-none" href="posts.html">Posts</a></li>
+<li><a class="text-muted text-decoration-none" href="about.html">About</a></li>
+<li><a class="text-muted text-decoration-none" href="contacts.html">Contacts</a></li>
+<li><a class="text-muted text-decoration-none" href="privacy_policy.html">Privacy Policy</a></li>
+</ul>
+</div>
+<div class="col-md-4">
+<h5 class="text-muted mb-3">Connect With Us</h5>
+<div class="d-flex">
+<a class="text-muted me-3" href="#"><i class="fab fa-facebook-f"></i></a>
+<a class="text-muted me-3" href="#"><i class="fab fa-twitter"></i></a>
+<a class="text-muted me-3" href="#"><i class="fab fa-instagram"></i></a>
+<a class="text-muted" href="#"><i class="fab fa-linkedin-in"></i></a>
+</div>
+</div>
+</div>
+<hr class="my-4"/>
+<div class="row">
+<div class="col-md-6 text-center text-md-start">
+<p class="text-muted small mb-0">© 2024 Faceswap. All rights reserved.</p>
+</div>
+<div class="col-md-6 text-center text-md-end">
+<p class="text-muted small mb-0">Contact: info@faceswap.com | +1 (555) 123-4567</p>
+</div>
+</div>
+</div>
+</footer>
+<style>
+footer {
+    background: linear-gradient(135deg, rgba(176, 196, 222, 0.7), rgba(230, 230, 250, 0.7));
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+footer a, footer i {
+    transition: all 0.3s ease;
+}
+
+footer a:hover, footer i:hover {
+    color: #6a5acd !important;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    footer {
+        text-align: center;
+    }
+}
+</style>
+</footer>
+</body>
+</html>
